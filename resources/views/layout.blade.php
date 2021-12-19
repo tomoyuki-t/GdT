@@ -2,7 +2,7 @@
 <html lang='ja'>
 <head>
     <meta charset='UTF-8'>
-    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="../../../css/layout.css">
     <title>GdT</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
             <a class="btn" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('Sign out') }}
             </a>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="btn">
@@ -38,5 +38,6 @@
     </div>
     </header>
     @yield('content')
+    
 </body>
 </html>

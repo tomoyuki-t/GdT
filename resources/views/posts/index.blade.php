@@ -10,13 +10,15 @@
     <h1>List</h1>
     <hr/>
     @foreach ($posts as $post)
+    <div class='container'>
         <div class='post'>
             <h3>
                 <a href="{{url('posts', $post->id)}}">
                     {{ $post->title }}
                 </a>
-                {{ $post->area->prefecture }}
             </h3>
+            <p>{{ $post->area->prefecture }}</p>
         </div>
+    </div>
     @endforeach
 @endsection

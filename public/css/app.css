@@ -1,0 +1,15 @@
+.navbar-brand {
+    float: right;
+    margin: 0% 10px;
+}
+
+.nav-link {
+    float: right;
+    margin: 0% 10px;
+}
+
+.py-4 {
+    text-align: center;
+    padding-top: 50px;
+}
+

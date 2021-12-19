@@ -2,13 +2,13 @@
 
 
 @section('content')
-<div class='show-container'>
     <h1>{{ $post->user->name }}</h1>
-    <h2>{{ $post->title }}</h2>
-    <h3>
+    <h3>{{ $post->title }}</h2>
+    <h4>
         {{ $post->area->prefecture}}<br>
+    </h4>
+    <h4>
         {{ $post->body }}
-    </h3>
-</div>
+    </h4>
     
 @endsection
