@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <p>{{ __('Sign in') }}</p>
+                    <h1>{{ __('Sign in') }}</h1>
                 </div>
 
                 <div class="card-body">
@@ -40,7 +40,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        {{--
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -52,6 +52,7 @@
                                 </div>
                             </div>
                         </div>
+                        --}}
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">

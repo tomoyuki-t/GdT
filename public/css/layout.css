@@ -20,6 +20,7 @@ h2 {
 
 .container {
     width: 100%;
+    margin-top: 50px;
     
 }
 
@@ -27,6 +28,21 @@ h2 {
     width: calc(100%/3);
     float: left;
     margin-bottom: 50px;
+    height: 130px;
+}
+
+.border {
+    border: solid;
+    border-radius: 20px;
+    border-width: thin;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 130px;
+}
+
+.border h3 {
+    margin-top: 30px;
+
 }
 
 h3 {
@@ -44,5 +60,39 @@ p {
 
 .form-group {
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
+
+.create-btn {
+    float: right;
+    width: 100px;
+}
+
+
+
+.show-container {
+    width: 60%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid;
+    border-radius: 60px;
+    border-width: thin;
+}
+
+.show-container > h3 {
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.create-container {
+    margin-top: 50px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid;
+    border-radius: 80px;
+    border-width: thin;
+}
+

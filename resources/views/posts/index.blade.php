@@ -8,16 +8,17 @@
 
 @section('content')
     <h1>List</h1>
-    <hr/>
     @foreach ($posts as $post)
     <div class='container'>
         <div class='post'>
-            <h3>
-                <a href="{{url('posts', $post->id)}}">
-                    {{ $post->title }}
-                </a>
-            </h3>
-            <p>{{ $post->area->prefecture }}</p>
+            <div class='border'>
+                <h3>
+                    <a href="{{url('posts', $post->id)}}">
+                        {{ $post->title }}
+                    </a>
+                </h3>
+                <p>{{ $post->area->prefecture }}</p>
+            </div>
         </div>
     </div>
     @endforeach
