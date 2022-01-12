@@ -49,19 +49,25 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //$appliedUsers = [];
-        //if($user->id == Auth::id()){
-        //    $myPosts = Post::where('user_id', $user->id)->get();
-        //    foreach($myPosts as $myPost){
-        //        $myAppliedPost = 
-        //    }
-        //    $appliedUsers = Applicant::where('post_id', $user->post->id)->get();
-        //}
+        //自分のユーザー詳細画面で、誰に応募されたかを最新順で表示
+
+        /*
+        //自分がした投稿のidを取得
         $myPosts = Post::where('user_id', Auth::id())->get(['id']);
+        //応募情報テーブルからその投稿に応募した人のuser_idを取得
         $myAppliedPosts = Applicant::whereIn('post_id', $myPosts)->get(['user_id']);
+        //ユーザーテーブルからuser_idが一致する人を取得
         $appliedUsers = User::whereIn('id', $myAppliedPosts)->get();
+        */
+
+        //自分がした投稿のidを取得
+        $myPosts = Post::where('user_id', Auth::id())->get(['id']);
+        //応募情報テーブルから、自分がした投稿のidが含まれている情報を全て取得
+        $myAppliedPosts = Applicant::whereIn('post_id', $myPosts)->latest('created_at')->get();
+
+
         $userPosts = Post::where('user_id',$user->id)->latest('created_at')->get();
-        return view('users.show', compact('user', 'userPosts', 'appliedUsers'));
+        return view('users.show', compact('user', 'userPosts', 'myAppliedPosts'));
     }
 
     /**

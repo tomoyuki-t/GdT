@@ -9,16 +9,22 @@
 
     @if($user->id == Auth::id())
         <h2>Applied</h2>
+        @if(!isset($myAppliedPosts[0]))
+            <h3>No applied</h3>
+        @endif
         <div class='apply-container'>
-            @foreach($appliedUsers as $appliedUser)
+            @foreach($myAppliedPosts->unique('user_id') as $myAppliedPost)
                 <div class='applied-user'>
-                    <h3><a href="{{ url('users', $appliedUser->id) }}">{{ $appliedUser->name }}</a></h3>
+                    <h3><a href="{{ url('users', $myAppliedPost->user_id) }}">{{ $myAppliedPost->user->name }}</a></h3>
                 </div>
             @endforeach
         </div>
     @endif
 
     <h2>List</h2>
+    @if(!isset($userPosts[0]))
+        <h3>No post</h3>
+    @endif
     @foreach ($userPosts as $userPost)
     <div class='container'>
         <div class='post'>
