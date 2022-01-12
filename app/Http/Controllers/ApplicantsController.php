@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\ApplicantRequest;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Models\Applicant;
 
-class PostsController extends Controller
+class ApplicantsController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth')->except('index');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('created_at')->get();
-        return view('posts.index', compact('posts'));
-        //return view('posts.index');
+        //
     }
 
     /**
@@ -33,7 +27,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -42,11 +36,12 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(ApplicantRequest $request)
     {
-        //$inputs = \Request::all();
-        //Post::create($inputs);
-        $post = Auth::user()->posts()->create($request->validated());
+        $applicant = new Applicant();
+        $applicant->post_id = $request->post_id;
+        $applicant->user_id = $request->user_id;
+        $applicant->save();
         return redirect()->route('posts.index');
     }
 
@@ -56,10 +51,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        $appliedIf = Applicant::where('post_id', $post->id)->where('user_id', Auth::id())->exists();
-        return view('posts.show', compact('post', 'appliedIf'));
+        //
     }
 
     /**

@@ -18,4 +18,8 @@ class Post extends Model
     public function area(){
         return $this->belongsTo('App\Models\Area');
     }
+
+    public function applicants() {
+        return $this->hasMany('App\Models\Applicant');
+    }
 }

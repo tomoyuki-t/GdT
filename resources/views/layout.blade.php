@@ -21,6 +21,8 @@
         @endguest
         
         @auth
+
+            <a href="{{ url('users', Auth::id()) }}" class="btn">My Page</a>
         
             <a class="btn" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

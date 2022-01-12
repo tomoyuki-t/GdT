@@ -96,3 +96,10 @@ p {
     border-width: thin;
 }
 
+.applied {
+    width: 95%;
+}
+
+.applied > h3 {
+    text-align: right;
+}

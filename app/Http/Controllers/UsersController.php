@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
+use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Models\Applicant;
+use Illuminate\Support\Facades\Auth;
 
-class PostsController extends Controller
+class UsersController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth')->except('index');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('created_at')->get();
-        return view('posts.index', compact('posts'));
-        //return view('posts.index');
+        //
     }
 
     /**
@@ -33,7 +27,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -42,12 +36,9 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
-        //$inputs = \Request::all();
-        //Post::create($inputs);
-        $post = Auth::user()->posts()->create($request->validated());
-        return redirect()->route('posts.index');
+        //
     }
 
     /**
@@ -56,10 +47,21 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(User $user)
     {
-        $appliedIf = Applicant::where('post_id', $post->id)->where('user_id', Auth::id())->exists();
-        return view('posts.show', compact('post', 'appliedIf'));
+        //$appliedUsers = [];
+        //if($user->id == Auth::id()){
+        //    $myPosts = Post::where('user_id', $user->id)->get();
+        //    foreach($myPosts as $myPost){
+        //        $myAppliedPost = 
+        //    }
+        //    $appliedUsers = Applicant::where('post_id', $user->post->id)->get();
+        //}
+        $myPosts = Post::where('user_id', Auth::id())->get(['id']);
+        $myAppliedPosts = Applicant::whereIn('post_id', $myPosts)->get(['user_id']);
+        $appliedUsers = User::whereIn('id', $myAppliedPosts)->get();
+        $userPosts = Post::where('user_id',$user->id)->latest('created_at')->get();
+        return view('users.show', compact('user', 'userPosts', 'appliedUsers'));
     }
 
     /**

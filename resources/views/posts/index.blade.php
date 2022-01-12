@@ -8,6 +8,9 @@
 
 @section('content')
     <h1>List</h1>
+    @if(!isset($posts[0]))
+        <h2>No Post</h2>
+    @endif
     @foreach ($posts as $post)
     <div class='container'>
         <div class='post'>
