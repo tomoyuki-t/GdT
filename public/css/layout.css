@@ -103,3 +103,46 @@ p {
 .applied > h3 {
     text-align: right;
 }
+
+
+.dm-container {
+    height: 500px;
+    width: 70%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid;
+    border-width: thin;
+    overflow: scroll;
+}
+
+.right-message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.left-message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.create-message {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-message {
+    width: 94%;
+    
+    
+}
+
+.send-btn {
+    width: 5%;
+    float: right;
+    margin-top: 3px;
+}

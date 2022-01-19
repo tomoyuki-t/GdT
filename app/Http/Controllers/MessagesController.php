@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
-use App\Http\Requests\ApplicantRequest;
-use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Applicant;
+use App\Http\Requests\MessageRequest;
+use App\Models\Message;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class ApplicantsController extends Controller
+class MessagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,15 +35,14 @@ class ApplicantsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ApplicantRequest $request)
+    public function store(MessageRequest $request)
     {
-        $applicant = new Applicant();
-        $applicant->post_id = $request->post_id;
-        $applicant->user_id = $request->user_id;
-        $applicant->save();
-        $data = Post::where('id', $request->post_id)->first();
-        $data_id = $data->user_id;
-        return redirect()->route('messages.show', ['message' => $data_id]);
+        $message = new Message();
+        $message->sender_id = $request->sender_id;
+        $message->receiver_id = $request->receiver_id;
+        $message->body = $request->body;
+        $message->save();
+        return redirect()->back();
     }
 
     /**
@@ -56,7 +53,12 @@ class ApplicantsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        $myId = Auth::id();
+        $messages = Message::where('sender_id', $myId)->where('receiver_id', $id)->orWhere(function($query) use($myId, $id){
+            $query->where('sender_id', $id)->where('receiver_id', $myId);
+        })->get();
+        return view('messages.show', compact('messages','id', 'user'));
     }
 
     /**

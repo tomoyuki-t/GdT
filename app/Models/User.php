@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function applicants() {
         return $this->hasMany('App\Models\Applicant');
     }
+
+    public function messages(){
+        return $this->hasMany('App\Models\Message');
+    }
 }

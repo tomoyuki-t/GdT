@@ -17,6 +17,7 @@ Route::get('/', 'App\Http\Controllers\PostsController@index')->name('top');
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 Route::resource('users', 'App\Http\Controllers\UsersController')->only(['show']);
 Route::resource('applicants', 'App\Http\Controllers\ApplicantsController')->only(['store']);
+Route::resource('messages', 'App\Http\Controllers\MessagesController')->only(['show', 'store']);
 
 //Route::get('/', function () {
     //return view('welcome');

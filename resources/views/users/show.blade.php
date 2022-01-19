@@ -21,10 +21,15 @@
         </div>
     @endif
 
+    @if(($user->id != Auth::id()) && ($appliedOrNot == true))
+        <h3><a href="{{ url('messages', $user->id) }}">DM</a></h3>
+    @endif
+
     <h2>List</h2>
     @if(!isset($userPosts[0]))
         <h3>No post</h3>
     @endif
+
     @foreach ($userPosts as $userPost)
     <div class='container'>
         <div class='post'>
