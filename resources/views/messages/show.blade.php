@@ -24,7 +24,12 @@
                 {!! Form::hidden('sender_id', Auth::id()) !!}
                 {!! Form::hidden('receiver_id', $id) !!}
                 {!! Form::text('body', null, ['class' => 'input-message']) !!}
-                {!! Form::submit('Send', ['class' => 'btn form-control send-btn']) !!}
+                {!! Form::submit('Send', ['class' => 'btn form-control send-btn', ]) !!}
+                @if ($errors->any())
+	                @foreach ($errors->all() as $error)
+	                    <p>※{{ $error }}</p>
+	                @endforeach
+	            @endif
             {!! Form::close() !!}
     </div>
 @endsection

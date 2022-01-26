@@ -6,6 +6,7 @@ use App\Http\Requests\MessageRequest;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MessagesController;
 
 class MessagesController extends Controller
 {
